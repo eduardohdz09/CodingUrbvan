@@ -1,7 +1,15 @@
 def problem2(a: list, b: list):
+
+    """ Function that receives two list and returns 
+        the positions of the element in list A in list B
+        Parameters:
+        a: list
+        b: list
+
+        output: list with the positions of the element in list A in list B
+    """
     
     aux_dict = {value: index for index, value in enumerate(b)}
-    print(aux_dict)
     result = [aux_dict[x] for x in a]
     return result
 

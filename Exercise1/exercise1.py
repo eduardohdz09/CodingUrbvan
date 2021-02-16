@@ -1,5 +1,5 @@
 def problem1(items: list):
-        
+
     score_dict = {}
     for index, value in items:
         if index in score_dict.keys():
@@ -17,6 +17,14 @@ def problem1(items: list):
 
 
 def get_average(key: int, scores: list):
+    """ Function that receives a scores list and return the returns the average of the 5 highest values
+        Parameters:
+        key: student id
+        scores: scores list
+
+        output: [student id, average]
+        if the student has less than 5 grades returns -1
+    """
     count = 0
     if len(scores) >= 5:
         scores.sort()
