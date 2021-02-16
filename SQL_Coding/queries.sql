@@ -13,18 +13,17 @@ GROUP BY clients.client_id ORDER BY "total" DESC LIMIT 10;
 
 -- How many trips have more seats reserved than their vehicle capacity
 WITH
-    result AS (
-        SELECT reservations.trip_id,
-            SUM(reservations.seats) AS "seats_reserved",
-            trips.vehicle_capacity
-        FROM reservations
-        INNER JOIN trips on reservations.trip_id = trips.trip_id
-        GROUP BY reservations.trip_id, trips.vehicle_capacity
+     result AS (
+         SELECT reservations.trip_id,
+                SUM(reservations.seats) AS "seats_reserved",
+                trips.vehicle_capacity
+         FROM reservations
+                  INNER JOIN trips on reservations.trip_id = trips.trip_id
+         GROUP BY reservations.trip_id, trips.vehicle_capacity
+         HAVING SUM(reservations.seats) > trips.vehicle_capacity
      )
     SELECT
-        COUNT(*) AS "trips_oversolded"
-    FROM result
-    WHERE seats_reserved > vehicle_capacity;
+         COUNT(*) AS "trips_oversolded" FROM result;
 
 -- How many different fullnames (firstname + lastname) are in tables clients & driver combined
 
